@@ -24,12 +24,30 @@ internal class Program
         {
             //context.Database.EnsureCreated();
 
-            CreateProduct(context);
-            UpdateProductName(context, 1, "New Laptop");
-            UpdateStock(context, 1, 0);
-            ShowOutOfStock(context);
-            ShowTop3Expensive(context);
-            DeleteProduct(context, 1);
+            //CreateProduct(context);
+            //UpdateProductName(context, 1, "New Laptop");
+            //UpdateStock(context, 1, 0);
+            //ShowOutOfStock(context);
+            //ShowTop3Expensive(context);
+            //DeleteProduct(context, 1);
+
+            //Dz2
+            var shop = new Shop(context);
+
+            shop.CreateCategory("Electronics");
+            shop.CreateProduct("Laptop", "Gaming laptop", 45000, 10, 1);
+
+            var products = shop.GetProducts();
+            foreach (var p in products) Console.WriteLine($"{p.Name} - {p.Price}");
+
+            var category = shop.GetCategoryByProduct(1);
+            Console.WriteLine($"Product category: {category?.Name}");
+
+            var productsByCategory = shop.GetProductsByCategory(1);
+            foreach (var p in productsByCategory) Console.WriteLine($"Product in category: {p.Name}");
+
+            //shop.DeleteProduct(1);
+            //shop.DeleteCategory(1);
         }
     }
 
